@@ -18,6 +18,7 @@ use pocketmine\event\Listener;
 use pocketmine\Player;
 
 use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat as TF;
 
 use pocketmine\event\entity\EntityDamageEvent;
 
@@ -30,7 +31,8 @@ class Main extends PluginBase implements Listener {
 		$this->getCommand("jellylegs")->setExecutor(new JellyLegsCommand($this));
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
-		$this->prefix = $this->getConfig()->get("prefix", "§2[§bJellyLegs§2] ");
+		$this->prefix = $this->getConfig()->get("prefix", "§5[§bJellyLegs§5] ");
+		$this->getServer()->getLogger()->info($this->prefix . TF::GREEN . "JellyLegs by TheDiamondYT loaded!");
 	}
 	
 	public function onFall(EntityDamageEvent $ev) {

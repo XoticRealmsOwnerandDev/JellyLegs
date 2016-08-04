@@ -6,11 +6,15 @@ api: [2.0.0]
 commands:
     jellylegs:
         description: Enable or disable fall damage for you or others!
-        permission: jellylegs.use
+        permission: jellylegs.toggle.self
 permissions:
-    jellylegs.toggle.self:
+    jellylegs.*:
         default: op
-        description: Allow use of the /jellylegs command on yourself.
-    jellylegs.toggle.others:
-        default: op
-        description: Allow use of the /jellylegs command on others.
+        description: Gives access to all JellyLegs permissions.
+        children:
+            jellylegs.toggle.self:
+                default: op
+                description: Allow use of the /jellylegs command on yourself.
+            jellylegs.toggle.others:
+                default: op
+                description: Allow use of the /jellylegs command on others.
