@@ -1,2 +1,2 @@
 # JellyLegs
-No fall damage plugin for Genisys / ClearSky etc.
+A no fall damage plugin for Genisys / ClearSky etc.

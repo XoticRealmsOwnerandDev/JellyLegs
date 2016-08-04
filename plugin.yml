@@ -1,0 +1,16 @@
+name: JellyLegs
+author: TheDiamondYT
+version: 1.0
+main: JellyLegs\Main
+api: [2.0.0]
+commands:
+    jellylegs:
+        description: Enable or disable fall damage for you or others!
+        permission: jellylegs.use
+permissions:
+    jellylegs.toggle.self:
+        default: op
+        description: Allow use of the /jellylegs command on yourself.
+    jellylegs.toggle.others:
+        default: op
+        description: Allow use of the /jellylegs command on others.
