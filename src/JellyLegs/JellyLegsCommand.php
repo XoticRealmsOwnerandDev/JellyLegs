@@ -33,7 +33,7 @@ class JellyLegsCommand implements CommandExecutor {
 	    	switch(count($args)) {
 			case 0:
 				if($sender instanceof Player) {
-					if(!$sender->hasPermission("jellylegs.toggle.self")) { 
+					if(!$sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.self")) { 
 						$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
 						return true;
 					}
@@ -62,7 +62,7 @@ class JellyLegsCommand implements CommandExecutor {
 					$sender->sendMessage($this->plugin->prefix . TF::GOLD . "Config has been reloaded!");
 					return true;
 				}
-				if(!$sender->hasPermission("jellylegs.toggle.others")) { 
+				if(!sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.others")) { 
 					$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
 					return true;
 				}
@@ -84,7 +84,7 @@ class JellyLegsCommand implements CommandExecutor {
 					} 
 				}
 				else {
-					$sender->sendMessage(TF::RED . "That player cannot be found");
+					$sender->sendMessage(TF::RED . "That player cannot be found.");
 					return true;
 				}
 			default:
