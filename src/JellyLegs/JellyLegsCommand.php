@@ -62,7 +62,7 @@ class JellyLegsCommand implements CommandExecutor {
 					$sender->sendMessage($this->plugin->prefix . TF::GOLD . "Config has been reloaded!");
 					return true;
 				}
-				if(!sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.others")) { 
+				if(!$sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.others")) { 
 					$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
 					return true;
 				}
