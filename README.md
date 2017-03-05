@@ -1,5 +1,17 @@
 # JellyLegs
-A no fall damage plugin for Genisys / ClearSky etc.
+A no fall damage plugin for [PocketMine-MP](https://github.com/pmmp/PocketMine-MP).  
   
- [**Nukkit Version**](https://github.com/TheDiamondYT1/JellyLegs/tree/nukkit)
+### Permissions
+* jellylegs.* - Access to all JellyLegs commands.  
+* jellylegs.toggle.self - Toggle JellyLegs for yourself.   
+* jellylegs.toggle.others - Toggle JellyLegs for others.   
+
+### Commands
+* /jellylegs 
+* /jellylegs <player name>  
+* /jellylegs reload  
+
+### TODO
+* Make messages configurable
+* Factions support?
 

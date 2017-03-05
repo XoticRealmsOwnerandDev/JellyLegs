@@ -17,6 +17,7 @@ namespace JellyLegs;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
+use pocketmine\Player;
 
 use pocketmine\utils\TextFormat as TF;
 
@@ -30,8 +31,7 @@ class JellyLegsCommand implements CommandExecutor {
 	
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
 	    if($command->getName() === "jellylegs") {
-	    	switch(count($args)) {
-			case 0:
+	        if(empty($args)) {
 				if($sender instanceof Player) {
 					if(!$sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.self")) { 
 						$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
@@ -52,7 +52,8 @@ class JellyLegsCommand implements CommandExecutor {
 					$sender->sendMessage(TF::RED . "Usage: /jellylegs <player>");
 					return true;
 				}
-		    	case 1:
+		    }
+		    if(count($args) === 1) {
 				if(strtolower($args[0]) === "reload") {
 					if(!$sender->hasPermission("jellylegs.*")) {
 						$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
@@ -87,7 +88,8 @@ class JellyLegsCommand implements CommandExecutor {
 					$sender->sendMessage(TF::RED . "That player cannot be found.");
 					return true;
 				}
-			default:
+			}
+			if(count($args) >= 2) {
 				$sender->sendMessage($sender instanceof Player ? TF::RED . "Usage: /jellylegs [player]" : TF::RED . "Usage: /jellylegs <player>");
 				return false;
 			}

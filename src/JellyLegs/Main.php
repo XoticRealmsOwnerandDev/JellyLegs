@@ -29,10 +29,10 @@ class Main extends PluginBase implements Listener {
 	public $players = array();
 	
 	public function onEnable() {
-		$this->getCommand("jellylegs")->setExecutor(new JellyLegsCommand($this));
-		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
 		$this->prefix = $this->getConfig()->get("prefix", "§5[§bJellyLegs§5] ");
+		$this->getCommand("jellylegs")->setExecutor(new JellyLegsCommand($this));
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getServer()->getLogger()->info($this->prefix . TF::GREEN . "JellyLegs by TheDiamondYT loaded!");
 	}
 	
