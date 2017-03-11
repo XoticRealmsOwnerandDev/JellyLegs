@@ -8,7 +8,7 @@ A no fall damage plugin for [PocketMine-MP](https://github.com/pmmp/PocketMine-M
 
 ### Commands
 * /jellylegs 
-* /jellylegs <player name>  
+* /jellylegs \<player name>  
 * /jellylegs reload  
 
 ### TODO
