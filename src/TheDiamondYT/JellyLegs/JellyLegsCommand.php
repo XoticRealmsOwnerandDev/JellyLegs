@@ -26,7 +26,7 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 	private $plugin;
 	
 	public function __construct(Main $plugin) {
-	    parent::__construct("jellylegs", "Toggle fall damage for yourself or others.", "/jellylegs [player]", []);
+	    parent::__construct("jellylegs", "Toggle fall damage for yourself or others.", "/jellylegs [player]", ["nofall"]);
 	    $this->setPermission("jellylegs.toggle.self");
 	    
 		$this->plugin = $plugin;
@@ -36,7 +36,7 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 	    if(empty($args)) {
 			if($sender instanceof Player) {
 				if(!$sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.self")) { 
-					$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
+					$sender->sendMessage(TF::DARK_RED . $this->plugin->translate("commands.no-permission"));
 					return true;
 				}
 				elseif(in_array($sender->getName(), $this->plugin->players)) {
@@ -58,7 +58,7 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 		if(count($args) === 1) {
 			if(strtolower($args[0]) === "reload") {
 				if(!$sender->hasPermission("jellylegs.*")) {
-					$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
+					$sender->sendMessage(TF::DARK_RED . $this->plugin->translate("commands.no-permission"));
 					return true;
 				}
 				$this->plugin->reloadConfig();
@@ -66,7 +66,7 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 				return true;
 			}
 			if(!$sender->hasPermission("jellylegs.*") || !$sender->hasPermission("jellylegs.toggle.others")) { 
-				$sender->sendMessage($this->plugin->prefix . TF::DARK_RED . "No permission.");
+				$sender->sendMessage(TF::DARK_RED . $this->plugin->translate("commands.no-permission"));
 				return true;
 			}
 
@@ -87,7 +87,7 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 				} 
 			}
 			else {
-				$sender->sendMessage(TF::RED . "That player cannot be found.");
+				$sender->sendMessage(TF::RED . $this->plugin->translate("commands.player-not-found"));
 				return true;
 			}
 		}

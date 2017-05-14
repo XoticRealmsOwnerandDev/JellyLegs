@@ -1,0 +1,16 @@
+{
+    "toggle": {
+        "enable": {
+            "self": "You can no longer take fall damage.",
+            "others": "Player '%s' can no longer take fall damage."
+        },
+        "disable": {
+            "self": "You can now take fall damage.",
+            "others": "Player '%s' can now take fall damage."
+        }
+    },
+    "commands": {
+        "no-permission": "No permission.",
+        "player-not-found": "That player cannot be found."
+    }
+}
