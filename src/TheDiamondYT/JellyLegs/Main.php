@@ -29,7 +29,7 @@ class Main extends PluginBase implements Listener {
 	
 	private $language;
 	
-	public $players = array();
+	private $players = [];
 	
 	public function onLoad() {
 	    //self::$instance = $this; 
@@ -55,7 +55,7 @@ class Main extends PluginBase implements Listener {
 	public function onEntityFall(EntityDamageEvent $ev) {
 		if(($player = $ev->getEntity()) instanceof Player) {
 			if($ev->getCause() === EntityDamageEvent::CAUSE_FALL) {
-				if($this->hasFallDamage($player)) {
+				if(!$this->hasFallDamage($player)) {
 					$ev->setCancelled();
 				}
 			}
@@ -71,14 +71,15 @@ class Main extends PluginBase implements Listener {
 	public function toggleFallDamage(Player $player, $value = null) {
 	    if($value === null) {
 	        if($this->hasFallDamage($player)) {
-	            $this->toggleFallDamage($player, true);
-	        } else {
 	            $this->toggleFallDamage($player, false);
+	        } else {
+	            $this->toggleFallDamage($player, true);
 	        }
 	    }
-	    elseif($value === true) {
+	    if($value === true) {
 	        unset($this->players[$player->getName()]);
-	    } else {
+	    } 
+	    if($value === false) {
 	        $this->players[$player->getName()] = $player;
 	    }
 	}
@@ -91,7 +92,7 @@ class Main extends PluginBase implements Listener {
 	 * @return bool
 	 */
 	public function hasFallDamage(Player $player): bool {
-	    return in_array($player->getName(), $this->players);
+	    return !in_array($player->getName(), $this->players);
 	}
 	
 	/**

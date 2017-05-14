@@ -39,15 +39,12 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 					$sender->sendMessage(TF::DARK_RED . $this->plugin->translate("commands.no-permission"));
 					return true;
 				}
-				elseif(in_array($sender->getName(), $this->plugin->players)) {
-					unset($this->plugin->players[$sender->getName()]);
-					$sender->sendMessage($this->plugin->prefix . TF::RED . "You can now take fall damage.");
-					return true;
-				} 
-				else {
-					$this->plugin->players[$sender->getName()] = $sender->getName();
-					$sender->sendMessage($this->plugin->prefix . TF::GREEN . "You can no longer take fall damage.");
-					return true;
+				if($this->plugin->hasFallDamage($sender)) {
+				    $this->plugin->toggleFallDamage($sender, true);
+					$sender->sendMessage($this->plugin->prefix . TF::RED . "You can now take fall damage.");		
+				} else {
+				    $this->plugin->toggleFallDamage($sender, false);
+					$sender->sendMessage($this->plugin->prefix . TF::GREEN . "You can no longer take fall damage.");		
 				}
 			}
 			else {
@@ -72,15 +69,13 @@ class JellyLegsCommand extends Command implements PluginIdentifiableCommand {
 
 			$target = $this->plugin->getServer()->getPlayer($args[0]);
 					
-			if(!$target === null) {
-				if(in_array($target->getName(), $this->plugin->players)) {
-					unset($this->plugin->players[$target->getName()]);
+			if($target !== null) {
+			    $this->plugin->toggleFallDamage($target);
+				if($this->plugin->hasFallDamage($target)) {
 					$sender->sendMessage($this->plugin->prefix . TF::RED . "Player '" . $target->getName() . "' can now take fall damage.");
 					$target->sendMessage($this->plugin->prefix . TF::RED . "You can now take fall damage.");
 					return true;
-				} 
-				else {
-					$this->plugin->players[$target->getName()] = $target->getName(); // TODO: Use players UUID instead?
+				} else {
 					$sender->sendMessage($this->plugin->prefix . TF::GREEN . "Player '" . $target->getName() . "' can no longer take fall damage.");
 					$target->sendMessage($this->plugin->prefix . TF::GREEN . "You can no longer take fall damage.");
 					return true;
